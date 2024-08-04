@@ -3,9 +3,9 @@
 from typing import Dict, NamedTuple, Any, List
 from pathlib import Path
 from ragctl.database import DatabaseHandler
-from ragctl import SUCCESS, DB_READ_ERROR, DB_WRITE_ERROR, DOC_ID_ERROR, DOC_EMBEDDING_ERROR
+from ragctl import SUCCESS, DB_READ_ERROR, DB_WRITE_ERROR, DOC_ID_ERROR, DOC_EMBEDDING_ERROR, DOC_NOT_FOUND_ERROR
 from ragctl.helper.validate_doc import ValidateDocumentFormat
-from ragctl.document_process.pdf_doc import ProcessPDFDocument
+from ragctl.document_process.process_doc import ProcessDocument
 from ragctl.query_document.query import QueryDocuments
 import os
 import shutil
@@ -27,7 +27,6 @@ class RagDocOperations:
     # Method: Add list of documents to the database
     def add_docs(self, documents_path: List[str]) -> DocumentResult:
         try:
-            print("Adding documents to the database...")
             result = []
             for document in documents_path:
                 # Check if the document exists
@@ -137,16 +136,27 @@ class RagDocOperations:
     # Method: Delete all the added documents
     def delete_all_documents(self) -> DocumentResult:
         try:
+            # Check if the database is empty
+            read_db = self._db_handler.read()
+            if len(read_db.data) == 0:
+                return DocumentResult({}, DOC_NOT_FOUND_ERROR)
+            # Delete all the documents from the database
             write_to_db = self._db_handler.write([])
-            # Remove all the documents from the application
+            if write_to_db.error:
+                return DocumentResult({}, DB_WRITE_ERROR)
+            # Delete all the documents from the document folder
             for file in os.listdir(self._docs_path):
                 if file != "README.md":
                     shutil.rmtree(self._docs_path / file)
+            # Delete all the documents from the database folder
+            for file in os.listdir(self._vector_db_path):
+                if file != "README.md":
                     shutil.rmtree(self._vector_db_path / file)
             return DocumentResult({}, SUCCESS)
         except Exception as e:
-            return DocumentResult({}, DB_WRITE_ERROR)
-    
+            return DocumentResult({}, DB_READ_ERROR)
+            
+            
     # Method: Delete the particular document
     def delete_document(self, document_id: str) -> DocumentResult:
         try:
@@ -169,10 +179,13 @@ class RagDocOperations:
             if write_to_db.error:
                 return DocumentResult({}, DB_WRITE_ERROR)
             # Delete the document from the document folder and vector database
-            shutil.rmtree(self._docs_path / document_id)
-            shutil.rmtree(self._vector_db_path / document_id)
+            if os.path.exists(self._docs_path / document_id):
+                shutil.rmtree(self._docs_path / document_id)
+            if os.path.exists(self._vector_db_path / document_id):
+                shutil.rmtree(self._vector_db_path / document_id)
             return DocumentResult({}, SUCCESS)
         except Exception as e:
+            print(e)
             return DocumentResult({}, DB_READ_ERROR)
     
     # Method: Process the added document and store it in the vector database
@@ -202,21 +215,20 @@ class RagDocOperations:
                 return DocumentResult({}, DOC_ID_ERROR)
             
             # Process the document and store it in the vector database
-            match document_format:
-                case 'PDF':
-                    # Process PDF document
-                    process_doc = ProcessPDFDocument(document_path, self._vector_db_path, document_hash)
-                    if process_doc.process():
-                        # Update the document status in the database
-                        for doc in read_db.data:
-                            if doc['id'] == document_id:
-                                doc['embedded'] = "True"
-                                write_db = self._db_handler.write(read_db.data)
-                                if write_db.error:
-                                    return DocumentResult({}, DB_WRITE_ERROR)
-                        return DocumentResult({}, SUCCESS)
-                    else:
-                        return DocumentResult({}, DB_WRITE_ERROR)
+            process_doc = ProcessDocument(document_path, self._vector_db_path,
+                                              document_hash, document_format)
+            if process_doc.process():
+                # Update the document status in the database
+                for doc in read_db.data:
+                    if doc['id'] == document_id:
+                        doc['embedded'] = "True"
+                        write_db = self._db_handler.write(read_db.data)
+                        if write_db.error:
+                            return DocumentResult({}, DB_WRITE_ERROR)
+                        break
+                return DocumentResult({}, SUCCESS)
+            else:
+                return DocumentResult({}, DB_WRITE_ERROR)
         except Exception as e:
             return DocumentResult({}, DB_READ_ERROR)
     

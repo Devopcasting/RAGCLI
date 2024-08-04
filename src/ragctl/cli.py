@@ -3,6 +3,7 @@
 from typing import Optional, List
 from pathlib import Path
 import typer
+typer.core.rich = None
 from ragctl import (
     __app_name__, __version__, ERRORS, SUCCESS, config, database, ragctl
 )
@@ -69,23 +70,28 @@ def init(
         None
     """
     try:
-        # Initialize application
-        init_application = config.init_app(db_path)
-        if init_application != SUCCESS:
-            typer.secho(f'Initialize application failed: "{ERRORS[init_application]}"', fg=typer.colors.RED, bold=True)
-            raise typer.Exit(code=1)
-    
-        # Initialize database
-        init_database = database.init_database(Path(db_path))
-        if init_database != SUCCESS:
-            typer.secho(f'Initialize database failed: "{ERRORS[init_database]}"', fg=typer.colors.RED, bold=True)
-            raise typer.Exit(code=1)
-    
+        # Initialize the RAGCTL application and database.
+        _init_app(db_path)
+        _init_database(db_path)
         typer.secho(f'Initialize application and database successfully!', fg=typer.colors.GREEN, bold=True)
     except Exception as e:
         typer.secho(f'Initialize application and database failed: "{e}"', fg=typer.colors.RED, bold=True)
         raise typer.Exit(code=1)
 
+def _init_app(db_path: str) -> None:
+    # Initialize application
+    init_application = config.init_app(db_path)
+    if init_application != SUCCESS:
+        typer.secho(f'Initialize application failed: "{ERRORS[init_application]}"', fg=typer.colors.RED, bold=True)
+        raise typer.Exit(code=1)
+
+def _init_database(db_path: str) -> None:
+    # Initialize database
+    init_database = database.init_database(Path(db_path))
+    if init_database != SUCCESS:
+        typer.secho(f'Initialize database failed: "{ERRORS[init_database]}"', fg=typer.colors.RED, bold=True)
+        raise typer.Exit(code=1)
+    
 # Command: Initialize AWS configuration
 @app.command(help="Initialize AWS configuration.")
 def init_aws(
@@ -218,9 +224,9 @@ def delete_all(
     rag_doc_operations = get_docs()
     if force:
         # Delete all documents
-        docs, error = rag_doc_operations.delete_all_documents()
+        error = rag_doc_operations.delete_all_documents().error
         if error != SUCCESS:
-            typer.secho(f'Delete documents failed: "{ERRORS[docs.error]}"', fg=typer.colors.RED, bold=True)
+            typer.secho(f'Delete documents failed: "{ERRORS[error]}"', fg=typer.colors.RED, bold=True)
             raise typer.Exit(code=1)
         else:
             typer.secho('All documents deleted successfully!', fg=typer.colors.GREEN, bold=True)
@@ -250,7 +256,7 @@ def delete(
         typer.secho(f'Delete document failed: "{ERRORS[error]}"', fg=typer.colors.RED, bold=True)
         raise typer.Exit(code=1)
     else:
-        typer.secho(f'Delete document successfully: "{document_id}"', fg=typer.colors.GREEN, bold=True)
+        typer.secho(f'Document deleted successfully: "{document_id}"', fg=typer.colors.GREEN, bold=True)
 
 # Command: Process the added document and embed it into VectorDB
 @app.command(help="Process the added document and embed it into VectorDB")

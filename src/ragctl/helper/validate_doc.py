@@ -54,13 +54,10 @@ class ValidateDocumentFormat:
             return False
     
     def _is_valid_docx(self) -> bool:
-        print("Check DOCX")
         try:
             document = Document(self.document)
-            print(document)
             return True
         except PackageNotFoundError:
-            print("EEEEE")
             return False
         except Exception:
             return False
