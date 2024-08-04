@@ -3,7 +3,7 @@
 from typing import Dict, NamedTuple, Any, List
 from pathlib import Path
 from ragctl.database import DatabaseHandler
-from ragctl import SUCCESS, DB_READ_ERROR, DB_WRITE_ERROR, DOC_ID_ERROR, DOC_EMBEDDING_ERROR, DOC_NOT_FOUND_ERROR
+from ragctl import SUCCESS, DB_READ_ERROR, DB_WRITE_ERROR, DOC_ID_ERROR, DOC_EMBEDDING_ERROR, DOC_NOT_FOUND_ERROR,DOC_PROCESS_ERROR
 from ragctl.helper.validate_doc import ValidateDocumentFormat
 from ragctl.document_process.process_doc import ProcessDocument
 from ragctl.query_document.query import QueryDocuments
@@ -228,9 +228,9 @@ class RagDocOperations:
                         break
                 return DocumentResult({}, SUCCESS)
             else:
-                return DocumentResult({}, DB_WRITE_ERROR)
+                return DocumentResult({}, DOC_PROCESS_ERROR)
         except Exception as e:
-            return DocumentResult({}, DB_READ_ERROR)
+            return DocumentResult({}, DOC_PROCESS_ERROR)
     
     # Method: Query the vector database
     def query_document(self, document_id:str, query: str) -> dict:

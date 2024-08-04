@@ -9,7 +9,7 @@ import csv
 class ValidateDocumentFormat:
     def __init__(self, document_path: str):
         self.document = document_path
-        self.document_type = ['PDF', 'DOCX', 'TEXT', 'HTML', 'XLS' ,'XLSX', 'CSV']
+        self.document_type = ['PDF', 'DOCX', 'TXT', 'HTML', 'XLS' ,'XLSX', 'CSV']
 
     def validate(self) -> bool:
         for doc_type in self.document_type:
@@ -29,7 +29,7 @@ class ValidateDocumentFormat:
                 return self._is_valid_pdf()
             case 'DOCX':
                 return self._is_valid_docx()
-            case 'TEXT':
+            case 'TXT':
                 return self._is_valid_text()
             case 'HTML':
                 return self._is_valid_html()

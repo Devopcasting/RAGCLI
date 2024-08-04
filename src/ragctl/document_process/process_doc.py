@@ -1,5 +1,6 @@
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_community.document_loaders import Docx2txtLoader
+from langchain_community.document_loaders import TextLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
 from langchain.schema.document import Document
@@ -10,11 +11,12 @@ import os
 class ProcessDocument:
     def __init__(self, pdf_file, vector_db_path: str, hash: str, document_format: str):
         self.pdf_file = pdf_file
-        self.documment_format = document_format
+        self.document_format = document_format
         # Join the vector_db_path and hash to get the folder path
         self.vector_db_path = os.path.join(vector_db_path, hash[-4:])
     
     def process(self) -> bool:
+        print("Processing the document...")
         try:
             # Load document
             data = self._load_document()
@@ -25,16 +27,16 @@ class ProcessDocument:
             self._save_to_chromadb(data_chunk)
             return True
         except Exception as e:
-            print(e)
             return False
 
     def _load_document(self) -> list[Document]:
-        match self.documment_format:
+        match self.document_format:
             case "PDF":
                 loader = PyPDFLoader(self.pdf_file)
             case "DOCX":
                 loader = Docx2txtLoader(self.pdf_file)
-        
+            case "TXT":
+                loader = TextLoader(self.pdf_file)
         data = loader.load()
         return data
     

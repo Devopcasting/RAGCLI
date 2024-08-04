@@ -15,8 +15,9 @@ __version__ = "0.1.0"
     AWS_FILE_ERROR,
     DOC_ID_ERROR,
     DOC_EMBEDDING_ERROR,
-    DOC_NOT_FOUND_ERROR
-) = range(12)
+    DOC_NOT_FOUND_ERROR,
+    DOC_PROCESS_ERROR
+) = range(13)
 
 ERRORS = {
     DIR_ERROR: "config directory error",
@@ -29,5 +30,6 @@ ERRORS = {
     AWS_FILE_ERROR: "aws file error",
     DOC_ID_ERROR: "document id not found",
     DOC_EMBEDDING_ERROR: "document is already embedded",
-    DOC_NOT_FOUND_ERROR: "documents not found"
+    DOC_NOT_FOUND_ERROR: "documents not found",
+    DOC_PROCESS_ERROR: "document processing error"
 }

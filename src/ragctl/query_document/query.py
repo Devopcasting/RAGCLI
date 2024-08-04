@@ -32,13 +32,11 @@ class QueryDocuments:
         response = llm.invoke(prompt)
      
         # Source
-        sources = [doc.metadata.get("source", None) for doc in docs]
+        #sources = [doc.metadata.get("source", None) for doc in docs]
         # Format the response
         formatted_response = f"""
 Question: {self.question}
 
 Response: {response}
-
-Sources: {sources}
         """
         return formatted_response
