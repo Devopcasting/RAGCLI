@@ -3,8 +3,14 @@ from nltk.tokenize import word_tokenize
 from nltk.corpus import stopwords
 
 # Ensure the necessary NLTK data is downloaded. Once it is downloaded don't try to download again
-# nltk.download('punkt', quiet=True)
-# nltk.download('stopwords', quiet=True)
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt', quiet=True)
+try:
+    nltk.data.find('corpora/stopwords')
+except LookupError:
+    nltk.download('stopwords', quiet=True)
 
 class DataChunkProcess:
     def __init__(self, data_chunk) -> None:
