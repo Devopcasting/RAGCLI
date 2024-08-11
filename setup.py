@@ -19,6 +19,9 @@ setup(
     packages=find_packages(where='src'),
     package_dir={'': 'src'},
     install_requires=install_requires,
+    extras_require={
+        "dev": ["pytest", "twine"]
+    },
     entry_points={
         'console_scripts': [
             'ragctl=ragctl.__main__:main',
