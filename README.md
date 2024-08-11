@@ -1,7 +1,7 @@
 RAGCTL - A CLI tool for Retrieval Augmented Generation
 =====================================================
 
-RAGCTL is a command-line interface tool designed to facilitate Retrieval Augmented Generation tasks. This tool provides a range of commands to manage and process documents, interact with VectorDB, and more.
+RAGCTL is a command-line interface tool designed to facilitate Retrieval Augmented Generation tasks. This tool provides a range of commands to manage and process documents in various formats, including DOCX, TEXT, and PDFs, interact with VectorDB, and more.
 
 Getting Started
 ---------------
