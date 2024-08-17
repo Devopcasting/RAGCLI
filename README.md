@@ -83,6 +83,21 @@ To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key an
 
    **Important**: Keep these credentials secure and do not share them publicly.
 
+## Enabling Amazon Titan Embeddings G1 – Text v1.2
+
+To enable Amazon Titan Embeddings G1 – Text v1.2 directly from the AWS Console, follow these steps:
+
+1. **Log in to AWS Management Console**: Go to the [AWS Management Console](https://aws.amazon.com/console/) and sign in with your AWS credentials.
+2. **Navigate to Amazon Bedrock**:
+    - In the AWS Management Console, search for **Amazon Bedrock** and select it.
+3. **Access the Model Library**:
+    - In the Amazon Bedrock dashboard, go to the Model Library section.
+4. **Find and Enable Titan Embeddings G1 – Text v1.2**:
+    - Search for **Titan Embeddings G1 – Text v1.2** in the model library.
+    - Follow the instructions to enable this model. This may involve configuring permissions and setting up the model for use.
+5. **Verify Configuration**:
+    - Once enabled, ensure that the model appears in your list of available models in Amazon Bedrock.
+ 
 ## Getting Started
 
 To get started with RAGCTL, simply run the command `ragctl` in your terminal. This will display the available options and commands.
