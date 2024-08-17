@@ -37,9 +37,6 @@ To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key an
 
    **Important**: Keep these credentials secure and do not share them publicly.
 
-7. **Configure AWS CLI (Optional)**:
-   - If you are using the AWS CLI, you can configure it by running `aws configure` in your terminal and entering the Access Key ID and Secret Access Key when prompted.
-
 ## Getting Started
 
 To get started with RAGCTL, simply run the command `ragctl` in your terminal. This will display the available options and commands.
