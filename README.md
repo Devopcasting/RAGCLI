@@ -46,6 +46,16 @@ To use ollama with RAGCTL, you need to install it on your system. Below are the 
    ```bash
    ollama --version
 
+## Installing the LLM Model Mistral
+
+To use the Mistral language model with Ollama, follow these steps:
+
+1. **Download and Install Mistral**:
+    - Visit the [Mistral Model Page](https://ollama.com/library/mistral) for more information.
+    - Run the following command to download and install the Mistral model:
+    ```bash
+    ollama run mistral
+
 ## Getting AWS Secret Key and Access Key
 
 To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
