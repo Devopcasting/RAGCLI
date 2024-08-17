@@ -12,6 +12,15 @@ RAGCTL is built using the following technologies:
 4. **Python Typer**: A fast and intuitive library for building command-line interfaces in Python, which powers RAGCTL's CLI.
 5. **Amazon Titan Text Embeddings Models**: Utilized for generating text embeddings, essential for document processing and querying within VectorDB.
 
+## Installing Ollama on Linux or macOS
+
+To use ollama with RAGCTL, you need to install it on your system. Below are the steps to install Ollama on Linux or macOS.
+
+### For Linux:
+
+1. **Download and install Ollama:
+    * Visit the [Ollama Linux Download Page](https://ollama.com/download/linux).
+
 ## Getting AWS Secret Key and Access Key
 
 To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
