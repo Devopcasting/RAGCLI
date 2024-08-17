@@ -56,6 +56,8 @@ To use the Mistral language model with Ollama, follow these steps:
     ```bash
     ollama run mistral
 
+**Note**: Downloading the Mistral model may take some time. Once the download is complete, the process will pause at the prompt. To exit, simply press `CTRL+D`.
+
 ## Getting AWS Secret Key and Access Key
 
 To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
