@@ -23,6 +23,9 @@ To use ollama with RAGCTL, you need to install it on your system. Below are the 
     * Alternatively, you can directly run the installation script using the following command:
         ```bash
         curl -fsSL https://ollama.com/install.sh | sh
+2. **Verify Installation**:
+    ```bash
+    ollama --version
 
 
 ## Getting AWS Secret Key and Access Key
