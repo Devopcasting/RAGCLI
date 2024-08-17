@@ -1,20 +1,20 @@
-RAGCTL - A CLI tool for Retrieval Augmented Generation
+#   RAGCTL - A CLI tool for Retrieval Augmented Generation
 =====================================================
 
 RAGCTL is a command-line interface tool designed for Retrieval Augmented Generation (RAG). It allows users to upload documents in various formats, including DOCX, TEXT, and PDFs, and enables them to ask questions directly from the uploaded content.
 
-Technology Stack
+## Technology Stack
 ----------------
 
 RAGCTL is built using the following technologies:
 
 1. **Langchain Framework**: Provides the foundation for the RAG workflow, enabling seamless integration of language models and document processing.
-2. Ollama: A platform used to manage and deploy language models efficiently.
-3. Ollama Model Mistral: The specific language model used within RAGCTL for generating responses.
-4. Python Typer: A fast and intuitive library for building command-line interfaces in Python, which powers RAGCTL's CLI.
-5. Amazon Titan Text Embeddings Models: Utilized for generating text embeddings, essential for document processing and querying within VectorDB.
+2. **Ollama**: A platform used to manage and deploy language models efficiently.
+3. **Ollama Model Mistral**: The specific language model used within RAGCTL for generating responses.
+4. **Python Typer**: A fast and intuitive library for building command-line interfaces in Python, which powers RAGCTL's CLI.
+5. **Amazon Titan Text Embeddings Models**: Utilized for generating text embeddings, essential for document processing and querying within VectorDB.
 
-Getting AWS Secret Key and Access Key
+## Getting AWS Secret Key and Access Key
 -------------------------------------
 
 To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
