@@ -1,7 +1,18 @@
 RAGCTL - A CLI tool for Retrieval Augmented Generation
 =====================================================
 
-RAGCTL is a command-line interface tool designed to facilitate Retrieval Augmented Generation tasks. This tool provides a range of commands to manage and process documents in various formats, including DOCX, TEXT, and PDFs, interact with VectorDB, and more.
+RAGCTL is a command-line interface tool designed for Retrieval Augmented Generation (RAG). It allows users to upload documents in various formats, including DOCX, TEXT, and PDFs, and enables them to ask questions directly from the uploaded content.
+
+Technology Stack
+----------------
+
+RAGCTL is built using the following technologies:
+
+1. Langchain Framework: Provides the foundation for the RAG workflow, enabling seamless integration of language models and document processing.
+2. Ollama: A platform used to manage and deploy language models efficiently.
+3. Ollama Model Mistral: The specific language model used within RAGCTL for generating responses.
+4. Python Typer: A fast and intuitive library for building command-line interfaces in Python, which powers RAGCTL's CLI.
+5. Amazon Titan Text Embeddings Models: Utilized for generating text embeddings, essential for document processing and querying within VectorDB.
 
 Getting Started
 ---------------
