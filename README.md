@@ -8,12 +8,40 @@ Technology Stack
 
 RAGCTL is built using the following technologies:
 
-1. Langchain Framework: Provides the foundation for the RAG workflow, enabling seamless integration of language models and document processing.
+1. **Langchain Framework**: Provides the foundation for the RAG workflow, enabling seamless integration of language models and document processing.
 2. Ollama: A platform used to manage and deploy language models efficiently.
 3. Ollama Model Mistral: The specific language model used within RAGCTL for generating responses.
 4. Python Typer: A fast and intuitive library for building command-line interfaces in Python, which powers RAGCTL's CLI.
 5. Amazon Titan Text Embeddings Models: Utilized for generating text embeddings, essential for document processing and querying within VectorDB.
 
+Getting AWS Secret Key and Access Key
+-------------------------------------
+
+To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
+
+    1. Log in to AWS Management Console: Go to the AWS Management Console and sign in with your AWS credentials.
+
+    2. Navigate to IAM: In the AWS Management Console, search for IAM (Identity and Access Management) and click on it.
+
+    3. Create a New User:
+        In the IAM dashboard, click on Users and then Add user.
+        Provide a username and select Programmatic access as the access type.
+        Click Next: Permissions to set permissions.
+
+    4. Set Permissions:
+        You can attach existing policies directly or add the user to a group with the appropriate permissions.
+        For full access, you might attach the AdministratorAccess policy (be cautious with this level of access).
+
+    5. Review and Create:
+        Review the user's details and click Create user.
+
+    6. Download or Copy the Access Keys:
+        After the user is created, you will be provided with an Access Key ID and a Secret Access Key. You can download these credentials as a .csv file or copy them directly.
+
+    Important: Keep these credentials secure and do not share them publicly.
+
+    Configure AWS CLI (Optional):
+        If you are using the AWS CLI, you can configure it by running aws configure in your terminal and entering the Access Key ID and Secret Access Key when prompted.
 Getting Started
 ---------------
 
