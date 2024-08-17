@@ -1,4 +1,4 @@
-#   RAGCTL - A CLI tool for Retrieval Augmented Generation
+# RAGCTL - A CLI Tool for Retrieval Augmented Generation
 
 RAGCTL is a command-line interface tool designed for Retrieval Augmented Generation (RAG). It allows users to upload documents in various formats, including DOCX, TEXT, and PDFs, and enables them to ask questions directly from the uploaded content.
 
@@ -16,37 +16,35 @@ RAGCTL is built using the following technologies:
 
 To use RAGCTL with AWS services, you'll need to configure your AWS Secret Key and Access Key. Here's how you can obtain them:
 
-    1. Log in to AWS Management Console: Go to the AWS Management Console and sign in with your AWS credentials.
+1. **Log in to AWS Management Console**: Go to the [AWS Management Console](https://aws.amazon.com/console/) and sign in with your AWS credentials.
 
-    2. Navigate to IAM: In the AWS Management Console, search for IAM (Identity and Access Management) and click on it.
+2. **Navigate to IAM**: In the AWS Management Console, search for **IAM** (Identity and Access Management) and click on it.
 
-    3. Create a New User:
-        In the IAM dashboard, click on Users and then Add user.
-        Provide a username and select Programmatic access as the access type.
-        Click Next: Permissions to set permissions.
+3. **Create a New User**:
+   - In the IAM dashboard, click on **Users** and then **Add user**.
+   - Provide a username and select **Programmatic access** as the access type.
+   - Click **Next: Permissions** to set permissions.
 
-    4. Set Permissions:
-        You can attach existing policies directly or add the user to a group with the appropriate permissions.
-        For full access, you might attach the AdministratorAccess policy (be cautious with this level of access).
+4. **Set Permissions**:
+   - You can attach existing policies directly or add the user to a group with the appropriate permissions.
+   - For full access, you might attach the **AdministratorAccess** policy (be cautious with this level of access).
 
-    5. Review and Create:
-        Review the user's details and click Create user.
+5. **Review and Create**:
+   - Review the user's details and click **Create user**.
 
-    6. Download or Copy the Access Keys:
-        After the user is created, you will be provided with an Access Key ID and a Secret Access Key. You can download these credentials as a .csv file or copy them directly.
+6. **Download or Copy the Access Keys**:
+   - After the user is created, you will be provided with an **Access Key ID** and a **Secret Access Key**. You can download these credentials as a `.csv` file or copy them directly.
 
-    Important: Keep these credentials secure and do not share them publicly.
+   **Important**: Keep these credentials secure and do not share them publicly.
 
-    Configure AWS CLI (Optional):
-        If you are using the AWS CLI, you can configure it by running aws configure in your terminal and entering the Access Key ID and Secret Access Key when prompted.
+7. **Configure AWS CLI (Optional)**:
+   - If you are using the AWS CLI, you can configure it by running `aws configure` in your terminal and entering the Access Key ID and Secret Access Key when prompted.
 
-Getting Started
----------------
+## Getting Started
 
 To get started with RAGCTL, simply run the command `ragctl` in your terminal. This will display the available options and commands.
 
-Options
--------
+## Options
 
 The following options are available:
 
@@ -55,8 +53,7 @@ The following options are available:
 * `--show-completion`: Show completion for the current shell, to copy it or customize the installation.
 * `--help`: Display this help message and exit.
 
-Commands
---------
+## Commands
 
 RAGCTL provides the following commands:
 
@@ -92,8 +89,7 @@ Process the added document and embed it into VectorDB.
 
 Query the document.
 
-Usage Examples
---------------
+## Usage Examples
 
 * `ragctl add <document_list>`: Add a list of documents to the database.
 * `ragctl delete <document_id>`: Delete a specific document.
@@ -101,17 +97,14 @@ Usage Examples
 * `ragctl process <document_id>`: Process a document and embed it into VectorDB.
 * `ragctl query <query_string>`: Query the document database.
 
-Contributing
-------------
+## Contributing
 
 If you'd like to contribute to RAGCTL, please fork the repository and submit a pull request.
 
-License
--------
+## License
 
 RAGCTL is licensed under [MIT].
 
-Contact
--------
+## Contact
 
 For any questions or issues, please contact [devopcasting@gmail.com].
