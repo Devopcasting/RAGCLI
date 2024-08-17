@@ -24,12 +24,27 @@ To use ollama with RAGCTL, you need to install it on your system. Below are the 
 
         ```bash
         curl -fsSL https://ollama.com/install.sh | sh
-        
+
 2. **Verify Installation**:
 
     ```bash
     ollama --version
 
+### For macOS:
+
+1. **Download Ollama**:
+   - Visit the [Ollama macOS Download Page](https://ollama.com/download/Ollama-darwin.zip) and download the ZIP file.
+
+2. **Extract the ZIP File**:
+   - Locate the downloaded ZIP file and extract it to a directory of your choice.
+
+3. **Move Ollama to the Applications Folder**:
+   - After extracting, move the Ollama application to the `/Applications` folder.
+
+4. **Verify Installation**:
+   - Open a terminal and run:
+   ```bash
+   ollama --version
 
 ## Getting AWS Secret Key and Access Key
 
